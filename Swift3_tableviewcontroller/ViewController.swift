@@ -8,11 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    @IBOutlet weak var tableView: CustomTableView!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +24,34 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 100
+        } else {
+            return 1
+        }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+            cell?.textLabel?.text = "\(indexPath)"
+            cell?.detailTextLabel?.text = "hello"
+
+            self.tableView.iehBecomeFirstResponder(forIndex: IndexPath(item: 70, section: 0 ))
+            return cell ?? UITableViewCell()
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "comment")
+            cell?.textLabel?.text = "comment"
+            return cell ?? UITableViewCell()
+        default:
+            return UITableViewCell()
+        }
+    }
 }
 
