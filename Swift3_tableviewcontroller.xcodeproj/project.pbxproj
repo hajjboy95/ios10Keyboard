@@ -17,6 +17,7 @@
 		781712BB1D35390300C7CD79 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781712BA1D35390300C7CD79 /* CommentTableViewCell.swift */; };
 		781712BD1D3539AD00C7CD79 /* KeyboardBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781712BC1D3539AD00C7CD79 /* KeyboardBar.swift */; };
 		781712BF1D3539BE00C7CD79 /* IEHTextview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781712BE1D3539BE00C7CD79 /* IEHTextview.swift */; };
+		78985A291D38F97D00A90A85 /* IOS10TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78985A281D38F97D00A90A85 /* IOS10TextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		781712BA1D35390300C7CD79 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		781712BC1D3539AD00C7CD79 /* KeyboardBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardBar.swift; sourceTree = "<group>"; };
 		781712BE1D3539BE00C7CD79 /* IEHTextview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IEHTextview.swift; sourceTree = "<group>"; };
+		78985A281D38F97D00A90A85 /* IOS10TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOS10TextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				781712931D3530D600C7CD79 /* Assets.xcassets */,
 				781712951D3530D600C7CD79 /* LaunchScreen.storyboard */,
 				781712981D3530D600C7CD79 /* Info.plist */,
+				78985A281D38F97D00A90A85 /* IOS10TextView.swift */,
 			);
 			path = Swift3_tableviewcontroller;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				781712BF1D3539BE00C7CD79 /* IEHTextview.swift in Sources */,
 				781712BB1D35390300C7CD79 /* CommentTableViewCell.swift in Sources */,
 				781712BD1D3539AD00C7CD79 /* KeyboardBar.swift in Sources */,
+				78985A291D38F97D00A90A85 /* IOS10TextView.swift in Sources */,
 				7817128D1D3530D600C7CD79 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,6 +519,7 @@
 				781712B31D3530D600C7CD79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		781712B41D3530D600C7CD79 /* Build configuration list for PBXNativeTarget "Swift3_tableviewcontrollerTests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +528,7 @@
 				781712B61D3530D600C7CD79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		781712B71D3530D600C7CD79 /* Build configuration list for PBXNativeTarget "Swift3_tableviewcontrollerUITests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +537,7 @@
 				781712B91D3530D600C7CD79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

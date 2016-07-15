@@ -19,15 +19,13 @@ class KeyboardBar: UIView {
 
     // MARK: - view setup
 
-    private lazy var textView: IEHTextView = {
-        let tv = IEHTextView(frame: CGRect.zero)
+    private lazy var textView: IOS10TextView = {
+        let tv = IOS10TextView(frame: CGRect.zero)
         tv.iehDelegate = self
         tv.backgroundColor = UIColor.white()
         tv.textColor = UIColor.black().withAlphaComponent(0.8)
         tv.becomeFirstResponder()
         tv.layer.cornerRadius = 2.0
-        tv.layer.borderWidth = 0.15
-        tv.layer.borderColor = UIColor.lightGray().withAlphaComponent(0.5).cgColor
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.isScrollEnabled = self.isScrollingEnabled
         tv.font = UIFont.systemFont(ofSize: 14)
@@ -36,18 +34,34 @@ class KeyboardBar: UIView {
 
     private lazy var sendButton: UIButton = {
         let button = UIButton(frame: CGRect.zero)
-        button.setTitleColor(UIColor(red: 89/255, green: 171/255, blue: 227/255, alpha: 1.0) , for: UIControlState())
-        button.setTitleColor(UIColor(red: 89/255, green: 171/255, blue: 227/255, alpha: 1.0).withAlphaComponent(0.4) , for: .highlighted)
-        button.setTitleColor(UIColor.lightGray() , for: .disabled)
-
         button.isEnabled = self.buttonEnabled
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-        button.setTitle("Send", for: UIControlState())
+
+        button.setTitleColor(UIColor.white(), for: .highlighted)
+        button.setTitleColor(UIColor.brightBlue(), for: .focused)
+        button.setTitleColor(UIColor.white().withAlphaComponent(0.6), for: .selected)
+
+        button.setTitle("↑", for: UIControlState())
+
+        button.backgroundColor = UIColor.brightBlue()
+
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         button.addTarget(self, action: #selector(KeyboardBar.sendButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 30/2
         return button
     }()
 
+    private lazy var containerView: UIView = {
+        let view = UIView(frame: self.frame)
+        view.layer.borderColor = UIColor.blue().cgColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor.white()
+        view.layer.borderWidth = 1.0
+        view.layer.cornerRadius = 18.0
+        view.layer.borderColor = UIColor.containerViewBorderColor().cgColor
+        view.clipsToBounds = true
+        return view
+    }()
     func sendButtonTapped(_ sender: UIButton) {
         print(textView.text)
         textView.text = ""
@@ -76,12 +90,24 @@ class KeyboardBar: UIView {
     private func configureViews() {
         autoresizingMask = .flexibleHeight
         let views = ["textView":textView, "sendButton": sendButton]
-        addSubview(textView)
-        addSubview(sendButton)
+        addSubview(containerView)
+        containerView.addSubview(textView)
+        containerView.addSubview(sendButton)
 
-        let horizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-2-[textView]-4-[sendButton(35)]-4-|", options: .alignAllCenterY, metrics: nil, views: views)
+        let cv = ["containerView": containerView]
+        let horizontalContraintsCV = NSLayoutConstraint.constraints(withVisualFormat: "H:|-2-[containerView]-4-|", options: .alignAllCenterY, metrics: nil, views: cv)
+        let verticalContraintsCV   = NSLayoutConstraint.constraints(withVisualFormat: "V:|-4-[containerView]-4-|", options: [], metrics: nil, views: cv)
+
+        let horizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-2-[textView]-4-[sendButton]-6-|", options: .alignAllCenterY, metrics: nil, views: views)
         let verticalContraints   = NSLayoutConstraint.constraints(withVisualFormat: "V:|-4-[textView]-4-|", options: [], metrics: nil, views: views)
-        NSLayoutConstraint.activate(horizontalContraints + verticalContraints)
+
+        let height = NSLayoutConstraint(item: sendButton, attribute: .height, relatedBy: .equal, toItem: .none, attribute: .height, multiplier: 1.0, constant: 30)
+        let width = NSLayoutConstraint(item: sendButton, attribute: .width, relatedBy: .equal, toItem: .none, attribute: .width, multiplier: 1.0, constant: 30)
+
+        height.isActive = true
+        width.isActive = true
+
+        NSLayoutConstraint.activate(horizontalContraints + verticalContraints + horizontalContraintsCV + verticalContraintsCV)
     }
 
     override func intrinsicContentSize() -> CGSize {
@@ -119,7 +145,6 @@ extension KeyboardBar: IEHTextViewDelegate {
     func iehTextView(_ isEmpty: Bool) {
         sendButton.isEnabled = !isEmpty
         invalidateTextViewIntrinsicSizeIfNeeded()
-
     }
 }
 
@@ -132,13 +157,11 @@ class CustomTableView: UITableView {
 
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
-//        becomeFirstResponder()
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CustomView.tappedMainView(_:))))
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-//        becomeFirstResponder()
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CustomView.tappedMainView(_:))))
 
     }
@@ -162,6 +185,19 @@ class CustomTableView: UITableView {
         get {
             return keyboardBar
         }
+    }
+}
+extension UIColor {
+    class func brightBlue() -> UIColor {
+        return UIColor(colorLiteralRed: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)
+    }
+
+    class func containerViewBorderColor() -> UIColor {
+        return UIColor(colorLiteralRed: 200/255, green: 200/255, blue: 205/255, alpha: 1.0)
+    }
+
+    class func buttonDisabledColor() -> UIColor {
+        return UIColor(colorLiteralRed: 171/255, green: 183/255, blue: 183/255, alpha: 1.0)
     }
 }
 

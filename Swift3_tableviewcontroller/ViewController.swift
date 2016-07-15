@@ -43,7 +43,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell?.textLabel?.text = "\(indexPath)"
             cell?.detailTextLabel?.text = "hello"
 
-            self.tableView.iehBecomeFirstResponder(forIndex: IndexPath(item: 70, section: 0 ))
+            self.tableView.iehBecomeFirstResponder(forIndex: IndexPath(item: 0, section: 0 ))
             return cell ?? UITableViewCell()
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "comment")
