@@ -15,7 +15,7 @@ iOS keyboard for tableView or UIViews Storyboard implementation
 
 ![alt tag](Swift3_tableviewcontroller/Screenshots/4.png)
 
-### add tableView as an outlet to your view controller
+### add tableView as an outlet to your view controller (if your adding the functionality to a UIView just replace IEHTableView to IEHView )
 
 ![alt tag](Swift3_tableviewcontroller/Screenshots/5.png)
 
