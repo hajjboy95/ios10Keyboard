@@ -10,12 +10,12 @@ iOS keyboard for tableView or UIViews Storyboard implementation
 
 ![alt tag](Swift3_tableviewcontroller/Screenshots/2.png)
 
-### add a tableview into your view controller and set the class to IEHTableView
+### add a tableview into your view controller and set the class to IEHTableView (if your adding the functionality to a UIView just replace IEHTableView to IEHView )
 ![alt tag](Swift3_tableviewcontroller/Screenshots/3.png)
 
 ![alt tag](Swift3_tableviewcontroller/Screenshots/4.png)
 
-### add tableView as an outlet to your view controller (if your adding the functionality to a UIView just replace IEHTableView to IEHView )
+### add tableView as an outlet to your view controller 
 
 ![alt tag](Swift3_tableviewcontroller/Screenshots/5.png)
 
