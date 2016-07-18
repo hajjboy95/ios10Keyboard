@@ -18,7 +18,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         tableView.keyboardBar.iehKeyboardDelegate = self
-//        self.tableView.becomeFirstResponder()
     }
 
     func iehKeyboardFinishing(text: String) {

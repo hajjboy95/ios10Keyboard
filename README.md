@@ -19,11 +19,6 @@ iOS keyboard for tableView or UIViews Storyboard implementation
 
 ![alt tag](Swift3_tableviewcontroller/Screenshots/5.png)
 
-### Create a prototype cell and give it an identifier
-![alt tag](Swift3_tableviewcontroller/Screenshots/6.png)
-
-![alt tag](Swift3_tableviewcontroller/Screenshots/7.png)
-
 
 ### To get the final text before the send button is tapped
  

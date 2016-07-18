@@ -224,12 +224,15 @@ class IEHTableView: UITableView {
 
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
+        becomeFirstResponder()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        becomeFirstResponder()
     }
 
+    // pass in a indexpath and once tableview has reached it then iehKeboard will pop up from the bottom.
     func iehBecomeFirstResponder(forIndex index: IndexPath) {
         guard let indexPathsForVisibleRows = indexPathsForVisibleRows else {return}
 
