@@ -24,8 +24,16 @@ iOS keyboard for tableView or UIViews Storyboard implementation
 
 ![alt tag](Swift3_tableviewcontroller/Screenshots/7.png)
 
-### check dismiss interactively(similar to imessage and whatsapp setting) or dismiss on drag 
-![alt tag](Swift3_tableviewcontroller/Screenshots/8.png)
+
+### finally To get the final text before the send button is tapped
+ 
+  1 - set self as the delegate of the keyboardBar
+  ```tableView.keyboardBar.iehKeyboardDelegate = self```
+  
+  2 - conform to the IEHKeyboardBarProtocol 
+  ```class ViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, IEHKeyboardBarProtocol {```
+  
+  3 - conform to the IEHKeyboardBarProtocol method ``` func iehKeyboardFinishing(text: String)  ```
 
 Your good to go
 
