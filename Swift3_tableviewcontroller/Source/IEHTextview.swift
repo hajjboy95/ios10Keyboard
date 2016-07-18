@@ -9,8 +9,9 @@
 import UIKit
 
 
-protocol IEHTextViewDelegate: class {
-    func iehTextView(_ isEmpty:Bool)
+@objc protocol IEHTextViewDelegate: class {
+    func iehTextView(isEmpty empty:Bool)
+    @objc optional func iehTextViewChanged(_ text: String)
 }
 
 @IBDesignable final class IEHTextView: UITextView {
@@ -41,20 +42,21 @@ protocol IEHTextViewDelegate: class {
     }
 
     deinit {
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     private func registerToNotifications() {
-        NotificationCenter.default().addObserver(self, selector: #selector(IEHTextView.textDidChange), name: NSNotification.Name.UITextViewTextDidChange, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(IEHTextView.textDidChange), name: NSNotification.Name.UITextViewTextDidChange, object: self)
     }
 
     func textDidChange() {
-        if self.text.characters.count > 0 {
+        if text.characters.count > 0 {
             placeholderLabel.isHidden = true
-            iehDelegate?.iehTextView(false)
+            iehDelegate?.iehTextViewChanged?(text)
+            iehDelegate?.iehTextView(isEmpty: false)
         } else {
             placeholderLabel.isHidden = false
-            iehDelegate?.iehTextView(true)
+            iehDelegate?.iehTextView(isEmpty: true)
         }
     }
 
@@ -72,9 +74,9 @@ protocol IEHTextViewDelegate: class {
         configureLabel()
         placeholderLabel.text = text
     }
+
     private func configureLabel() {
         self.addSubview(placeholderLabel)
-
         let view = ["placeholderLabel":placeholderLabel]
         let horizonalConstraint  = NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[placeholderLabel]-0-|", options: [], metrics: nil, views: view)
         let VerticalConstraint  = NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[placeholderLabel]->=0-|", options: [], metrics: nil, views: view)

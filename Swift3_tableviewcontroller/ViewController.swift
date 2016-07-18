@@ -8,50 +8,35 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, IEHKeyboardBarProtocol{
 
-    @IBOutlet weak var tableView: CustomTableView!
-
+    @IBOutlet weak var tableView: IEHTableView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.keyboardBar.iehKeyboardDelegate = self
+//        self.tableView.becomeFirstResponder()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func iehKeyboardFinishing(text: String) {
+        print("^ keyboardText = \(text)")
     }
-
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 100
-        } else {
-            return 1
-        }
+        return 100
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-            cell?.textLabel?.text = "\(indexPath)"
-            cell?.detailTextLabel?.text = "hello"
-
-            self.tableView.iehBecomeFirstResponder(forIndex: IndexPath(item: 0, section: 0 ))
-            return cell ?? UITableViewCell()
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "comment")
-            cell?.textLabel?.text = "comment"
-            return cell ?? UITableViewCell()
-        default:
-            return UITableViewCell()
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        cell?.textLabel?.text = "\(indexPath)"
+        self.tableView.iehBecomeFirstResponder(forIndex: IndexPath(item: 5, section: 0 ))
+        return cell ?? UITableViewCell()
     }
 }
 
