@@ -27,7 +27,7 @@ iOS keyboard for tableView or UIViews Storyboard implementation
 
 ### To get the final text before the send button is tapped
  
-  1 - set self as the delegate of the keyboardBar
+  1 - set self as the delegate of the keyboardBar in the viewDidLoad()
   ```tableView.keyboardBar.iehKeyboardDelegate = self```
   
   2 - conform to the IEHKeyboardBarProtocol 
